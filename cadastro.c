@@ -8,12 +8,6 @@
 #define TAM_TELEFONE 20
 #define MAX_CLIENTES 100
 
-/* =========================
- Incluindo funções locais add-client,
-remove-line etc
-===============================*/
-
-
 typedef struct {
     char nome[TAM_NOME];
     char cpf[TAM_CPF];
