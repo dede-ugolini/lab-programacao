@@ -29,4 +29,7 @@ int genID();
 List *insertNode(List *node);
 void printList(List *node);
 void freeList(List *node);
+int getLength(List *node);
+void salvarClientes(List *node, int length);
+void salvarClientesIndivual(List *node);
 #endif

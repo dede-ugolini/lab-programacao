@@ -6,7 +6,7 @@ int main(){
 	List *node = NULL;
 	node = insertNode(node);
 	printList(node);
-	// cadastrarCliente();
+	salvarClientes(node, getLength(node));
 	freeList(node);
 	return 0;
 }
