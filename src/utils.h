@@ -19,7 +19,7 @@ typedef struct {
 typedef struct List {
 
 	int id;
-	char name;
+	char *name;
 	struct List *next;
 } List;
 

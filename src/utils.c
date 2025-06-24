@@ -14,7 +14,7 @@ void removerQuebraLinha(char *str) {
 	}
 }
 
-List *cadastrarCliente() {
+char *cadastrarCliente() {
 	char ch[TAM_NOME];
 	while (1) {
 		printf("\nDigite seu nome utilizando apenas letras:\n");
@@ -39,7 +39,8 @@ List *cadastrarCliente() {
 
 		if (valido) {
 			printf("✅ Cliente '%s' cadastrado com sucesso!\n", ch);
-			return ch;
+			char *name = malloc(len + 1);
+			return name;
 		} else {
 			printf("Por favor, digite novamente.\n");
 		}
