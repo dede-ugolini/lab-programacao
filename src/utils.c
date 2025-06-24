@@ -40,6 +40,7 @@ char *cadastrarCliente() {
 		if (valido) {
 			printf("✅ Cliente '%s' cadastrado com sucesso!\n", ch);
 			char *name = malloc(len + 1);
+			strcpy(name, ch);
 			return name;
 		} else {
 			printf("Por favor, digite novamente.\n");
