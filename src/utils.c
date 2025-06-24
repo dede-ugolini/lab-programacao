@@ -75,3 +75,37 @@ void freeList (List *node) {
 		node = temp;
 	}
 }
+int getLength(List *node){
+	int len = 0;
+	while (node != NULL){
+		len++;
+		node = node->next;
+	}
+	return len;
+}
+void salvarClientes(List *node, int length){
+	FILE *file = fopen("clientes.txt", "w");
+	if (file == NULL){
+		printf("Erro ao abrir o arquivo\n");
+		return;
+	}
+	for ( int i = 0; i < length; i++){
+		fprintf(file, "Id %d Name: %s\n",
+			node->id, node->name);
+		node = node->next;	
+	}
+	fclose(file);
+	printf("Clientes salvos com sucesso\n");
+}
+
+void salvarClienteIndividual(List *cliente) {
+	FILE *file = fopen("clientes.txt", "a");
+	if (file == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		return;
+	}
+	fprintf(file, "Id: %d | Nome: %s\n", cliente->id, cliente->name);
+	fclose(file);
+	printf("✅ Cliente salvo com sucesso\n");
+}
+
