@@ -3,4 +3,5 @@ CMakeLists.txt
 .idea/
 	bin/
 	src/clientes.txt
+src/cadastro.c
 
