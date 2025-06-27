@@ -1,2 +1,5 @@
-# lab-programacao-trab-1
-Programa desenvolvido nas aulas da disciplina de laborátorio de programção.
+# Sistema simples de gerenciamento de clientes e produtos
+
+##Cadastra, exibe, remove e salva clientes e produtos
+
+
