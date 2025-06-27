@@ -14,7 +14,7 @@ void removerQuebraLinha(char *str) {
 	}
 }
 
-char *cadastrarCliente() {
+char *cadastrarClienteNome() {
 	char ch[TAM_NOME];
 	while (1) {
 		printf("\nDigite seu nome utilizando apenas letras:\n");
@@ -47,6 +47,39 @@ char *cadastrarCliente() {
 		}
 	}
 }
+
+char *cadastrarClienteCpf(){
+	char cpf[14];
+	while (1) {
+		printf("\nDigite seu CPF utilizando apenas números\n");
+		fgets(cpf, sizeof(cpf), stdin);
+		removerQuebraLinha(cpf);
+		size_t len = strlen(cpf);
+		if (len == 0) {
+			printf("❌ Não é permitido CPF vazio, por favor digite novamente.\n");
+			continue;
+		}
+
+		int valido = 1;
+
+		// Verificar todos os caracteres
+		for (size_t i = 0; i < len; i++) {
+			if(!isdigit(cpf[i])) {
+				printf("❌ '%c' não é um numero válido.\n", cpf[i]);
+				valido = 0;
+			}
+		}
+
+		if (valido) {
+			printf("✅ CPF '%s' cadastrado com sucesso!\n", cpf);
+			char *CPF = malloc(len + 1);
+			strcpy(CPF, cpf);
+			return CPF;
+		} else {
+			printf("Por favor, digite novamente.\n");
+		}
+	}
+}
 int genId(){
 	srand(time(NULL));
 	return (rand() % 9999);
@@ -56,14 +89,15 @@ List *insertNode (List *node){
 
 	List *new = malloc(sizeof(List));
 	new->id = genId();
-	new->name = cadastrarCliente();
+	new->name = cadastrarClienteNome();
+	new->cpf = cadastrarClienteCpf();
 	new->next = node;
 	return new;
 }
 
 void printList (List *node){
 	while(node != NULL){
-		printf("Id :%d Name: %s\n", node->id, node->name);
+		printf("Id :%d Name: %s Cpf: %s\n", node->id, node->name, node->cpf);
 		node = node->next;
 	}
 }
@@ -83,28 +117,31 @@ int getLength(List *node){
 	}
 	return len;
 }
-void salvarClientes(List *node, int length){
+void salvarClientes(List *node){
 	FILE *file = fopen("clientes.txt", "w");
 	if (file == NULL){
 		printf("Erro ao abrir o arquivo\n");
 		return;
 	}
-	for ( int i = 0; i < length; i++){
-		fprintf(file, "Id %d Name: %s\n",
-			node->id, node->name);
+	while (node != NULL) {
+		fprintf(file, "Id %d Name: %s CPF:%s\n",
+			node->id, node->name, node->cpf);
 		node = node->next;	
 	}
 	fclose(file);
 	printf("Clientes salvos com sucesso\n");
 }
 
-void salvarClienteIndividual(List *cliente) {
-	FILE *file = fopen("clientes.txt", "a");
+void salvarClientesIndividual(List *node) {
+	FILE *file = fopen("clientes.txt", "a+");
 	if (file == NULL) {
 		printf("Erro ao abrir o arquivo\n");
 		return;
 	}
-	fprintf(file, "Id: %d | Nome: %s\n", cliente->id, cliente->name);
+	while (node != NULL){
+		fprintf(file, "Id: %d | Nome: %s | CPF: %s\n", node->id, node->name, node->cpf);
+		node = node->next;
+	}
 	fclose(file);
 	printf("✅ Cliente salvo com sucesso\n");
 }

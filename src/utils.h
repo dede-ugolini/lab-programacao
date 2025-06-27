@@ -20,16 +20,18 @@ typedef struct List {
 
 	int id;
 	char *name;
+	char *cpf;
 	struct List *next;
 } List;
 
 void removerQuebraLinha(char *str);
-char *cadastrarCliente();
+char *cadastrarClienteNome();
+char *cadastrarClienteCpf();
 int genID();
 List *insertNode(List *node);
 void printList(List *node);
 void freeList(List *node);
 int getLength(List *node);
-void salvarClientes(List *node, int length);
-void salvarClientesIndivual(List *node);
+void salvarClientes(List *node);
+void salvarClientesIndividual(List *node);
 #endif

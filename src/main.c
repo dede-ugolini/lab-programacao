@@ -27,7 +27,7 @@ int main(){
 			printList(node);
 			break;
 		case 3:
-			salvarClientes(node, getLength(node));
+			salvarClientesIndividual(node);
 			break;
 	}
 	} while(opcao != 0);
