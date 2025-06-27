@@ -85,6 +85,13 @@ int genId(){
 	return (rand() % 9999);
 }
 
+int getId(){
+	int id;
+	printf("Digite o número do id\n");
+	scanf("%d", &id);
+	return id;
+}
+
 List *insertNode (List *node){
 
 	List *new = malloc(sizeof(List));
@@ -116,6 +123,30 @@ int getLength(List *node){
 		node = node->next;
 	}
 	return len;
+}
+
+List *removeNode(List *node, int value){
+  if (node == NULL){
+    return NULL;
+  }
+  // Caso especial onde o valor procurado for o primeiro
+  if (node->id == value){
+    List *temp = node->next;
+    free(node);
+    return temp;
+  }
+  List *current = node;
+  while(current->next != NULL){
+    if(current->next->id == value){
+      List *temp = current->next;
+      current->next = current->next->next;
+      free(temp);
+			printf("Cliente removido com sucesso!\n");
+      return node;
+    }
+    current = current->next;
+  }
+  return node; //Valor nao encontrado
 }
 void salvarClientes(List *node){
 	FILE *file = fopen("clientes.txt", "w");

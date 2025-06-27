@@ -8,14 +8,6 @@
 
 #define TAM_NOME 100
 
-typedef struct {
-	char nome[TAM_NOME];
-	/*char cpf[TAM_CPF];
-	char endereco[TAM_ENDERECO];
-	char telefone[TAM_TELEFONE];
-	int idade; */
-} Cliente;
-
 typedef struct List {
 
 	int id;
@@ -28,7 +20,9 @@ void removerQuebraLinha(char *str);
 char *cadastrarClienteNome();
 char *cadastrarClienteCpf();
 int genID();
+int getId();
 List *insertNode(List *node);
+List *removeNode(List *node, int value);
 void printList(List *node);
 void freeList(List *node);
 int getLength(List *node);
