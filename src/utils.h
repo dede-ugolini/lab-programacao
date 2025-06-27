@@ -13,12 +13,14 @@ typedef struct List {
 	int id;
 	char *name;
 	char *cpf;
+	char *produto;
 	struct List *next;
 } List;
 
 void removerQuebraLinha(char *str);
 char *cadastrarClienteNome();
 char *cadastrarClienteCpf();
+List *cadastrarVenda(List *node, int id);
 int genID();
 int getId();
 List *insertNode(List *node);

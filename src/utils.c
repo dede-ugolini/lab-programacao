@@ -80,7 +80,43 @@ char *cadastrarClienteCpf(){
 		}
 	}
 }
-int genId(){
+
+List *cadastrarVenda(List *node, int id){
+	if (node == NULL){
+		return NULL;
+	}
+	if (node->id == id){
+		char venda[TAM_NOME];
+		while (1){
+			printf("Digite o nome do produto a ser vendido somente com letras\n");
+			fgets(venda, sizeof(venda), stdin);
+			removerQuebraLinha(venda);
+			size_t len = strlen(venda);
+		if (len == 0) {
+			printf("❌ Não é permitido entrada vazia, por favor digite novamente.\n");
+			continue;
+		}
+		int valido = 1;
+		for(size_t i = 0; i < len; i++){
+			if (!isalpha(venda[i]) && isspace(venda[i])) {
+				printf(" '%c' não é um caractere válido.\n");
+				valido = 0;
+			}
+		}
+		if (valido) {
+			printf("✅ Cliente '%s' cadastrado com sucesso!\n", venda);
+			char *VENDA = malloc(len + 1);
+			strcpy(VENDA, venda);
+			node->produto = VENDA;
+			return node;
+		} 
+		else {
+			printf("Por favor, digite novamente.\n");
+			}
+		}
+	}
+}
+	int genId(){
 	srand(time(NULL));
 	return (rand() % 9999);
 }
@@ -104,7 +140,7 @@ List *insertNode (List *node){
 
 void printList (List *node){
 	while(node != NULL){
-		printf("Id :%d Name: %s Cpf: %s\n", node->id, node->name, node->cpf);
+		printf("Id :%d Name: %s Cpf: %s Produto: %s\n", node->id, node->name, node->cpf, node->produto);
 		node = node->next;
 	}
 }
@@ -146,6 +182,7 @@ List *removeNode(List *node, int value){
     }
     current = current->next;
   }
+	printf("ID %d não encontrado\n", value);
   return node; //Valor nao encontrado
 }
 void salvarClientes(List *node){

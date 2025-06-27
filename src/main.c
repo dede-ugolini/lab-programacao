@@ -8,13 +8,14 @@ int main(){
 	
 	do {
 	
-	printf("\n==============================================");
-	printf("\n1. Cadastrar novo cliente\n");
+	printf("\n==============================================\n");
+	printf("1. Cadastrar novo cliente\n");
 	printf("2. Exibir clientes que estão em memória\n");
 	printf("3. Salvar clientes cadastrados em um arquivo\n");
 	printf("4. Remover Cliente pelo id\n");
-	printf("5.\n");
-	printf("6.\n");
+	printf("5. Cadastrar venda para um cliente\n");
+	printf("6. Sobreescrever arquivo de clientes\n");
+	printf("0. Sair\n");
 	printf("==============================================\n");
 	scanf("%d", &opcao);	
 	getchar();
@@ -31,6 +32,12 @@ int main(){
 			break;
 		case 4:
 			node = removeNode(node,getId());
+			break;
+		case 5:
+			cadastrarVenda(node, getId());
+			break;
+		case 6:
+			salvarClientes(node);
 			break;
 	}
 	} while(opcao != 0);
